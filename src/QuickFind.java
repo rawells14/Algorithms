@@ -26,7 +26,7 @@ class QuickFind {
 
     public void printIDArr() {
         for (int i = 0; i < id.length; i++) {
-            System.out.print(id[i] + "  ");
+            System.out.print(id[i] + " ");
         }
     }
 }
