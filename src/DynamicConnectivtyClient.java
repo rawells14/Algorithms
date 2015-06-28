@@ -16,7 +16,6 @@ public class DynamicConnectivtyClient {
         qf.union(6, 1);
         qf.union(3, 9);
         qf.union(8, 6);
-
         qf.printIDArr();
     }
 }
