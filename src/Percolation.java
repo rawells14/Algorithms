@@ -14,7 +14,9 @@ public class Percolation {
 
     //creates a percolation system, n being the size of the grid
     public Percolation(int n) {
-
+        if (n <= 0) {
+            throw new IllegalArgumentException("N must be greater than 1");
+        }
         uf = new WeightedQuickUnionUF(n * n);
         //creates a new union system with n^2 coords
         this.n = n;
@@ -33,6 +35,9 @@ public class Percolation {
 
     //opens the site (THIS IS 1 INDEXED), if not already
     public void open(int i, int j) {
+        if (!isValid(i - 1, j - 1)) {
+            throw new IndexOutOfBoundsException("Out of prescribed range");
+        }
         if (!isOpen(i, j)) {
             grid[i - 1][j - 1] = true;
             numberOfSlotsOpened++;
@@ -66,12 +71,24 @@ public class Percolation {
 
     //returns if the current slot is open (1 based)
     public boolean isOpen(int i, int j) {
+        if (!isValid(i - 1, j - 1)) {
+            throw new IndexOutOfBoundsException("Out of prescribed range");
+        }
         return grid[i - 1][j - 1];
     }
 
     //checks if the grid can percolate from the top to bottom
     public boolean percolates() {
         return uf.connected(0, n * n - 1);
+    }
+
+    public boolean isFull(int i, int j) {
+
+        if (isValid(i - 1, j - 1)) {
+            return uf.connected(0, getID(i - 1, j - 1));
+        } else {
+            throw new IndexOutOfBoundsException("Arguments are out of range");
+        }
     }
 
 
