@@ -9,8 +9,7 @@ public class TestingClient {
         System.out.println(p.percolates());
 
 
-        p.printGrid();
-        System.out.println(p.getThreshold());
+
 
     }
 }
